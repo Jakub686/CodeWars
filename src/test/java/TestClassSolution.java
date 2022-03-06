@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import org.junit.runners.JUnit4;
-public class TestClass {
+public class TestClassSolution {
     @Test
     public void FixedTests() {
         assertEquals(18, Solution.century(1705));
