@@ -1,3 +1,5 @@
+import static java.lang.Math.abs;
+
 public class CuboidVolumes {
     public static int findDifference(final int[] firstCuboid, final int[] secondCuboid) {
         int result = 0;
@@ -12,7 +14,7 @@ public class CuboidVolumes {
             secondCuboidResult *= i;
         }
 
-        result = firstCuboidResult - secondCuboidResult;
+        result = abs(firstCuboidResult - secondCuboidResult);
 
         return result;
     }
