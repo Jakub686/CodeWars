@@ -10,4 +10,8 @@ public class DRootExampleTest {
     public void Test2() {
         assertEquals( "Nope!" , 6, DRoot.digital_root(456));
     }
+    @Test
+    public void Test3() {
+        assertEquals( "Nope!" , 2, DRoot.digital_root(863912));
+    }
 }
