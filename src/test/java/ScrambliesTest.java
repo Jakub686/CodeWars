@@ -21,5 +21,6 @@ public class ScrambliesTest {
         testing(Scramblies.scramble("aabbcamaomsccdd","commas"),true);
         testing(Scramblies.scramble("commas","commas"),true);
         testing(Scramblies.scramble("sammoc","commas"),true);
+        testing(Scramblies.scramble("sammocbtesrbtsryrtsbystystyset s","commas"),true);
     }
 }
