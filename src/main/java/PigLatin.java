@@ -3,16 +3,11 @@ public class PigLatin {
         System.out.println(str);
         String result = "";
         String[] words = str.split(" ");
-
         for (int i = 0; i < words.length; i++) {
             result += moveLetter(words[i]);
-
         }
         result = result.trim();
         System.out.println(result);
-
-        if(str=="O tempora o mores !")
-            result ="Oay emporatay oay oresmay !ay";
         return result;
     }
     static String moveLetter(String wordIn){
@@ -23,12 +18,16 @@ public class PigLatin {
         }
         wordArray[wordArray.length-1] = wordArray[0];;
         wordArray[0] = " ";
-
         for(String str : wordArray){
             wordOut += str;
         }
         wordOut +="ay";
+        if(wordOut.equals(" !ay")){
+            wordOut = " !";
+        }
+        if(wordOut.equals(" ?ay")){
+            wordOut = " ?";
+        }
         return wordOut;
     }
-
 }
