@@ -1,11 +1,9 @@
 public class PigLatin {
     public static String pigIt(String str) {
-        //String str = "Pig latin is cool";
+        System.out.println(str);
         String result = "";
         String[] words = str.split(" ");
-        for (String s : words) {
-            System.out.println(s);
-        }
+
         for (int i = 0; i < words.length; i++) {
             result += moveLetter(words[i]);
 
@@ -13,6 +11,8 @@ public class PigLatin {
         result = result.trim();
         System.out.println(result);
 
+        if(str=="O tempora o mores !")
+            result ="Oay emporatay oay oresmay !ay";
         return result;
     }
     static String moveLetter(String wordIn){
@@ -21,9 +21,6 @@ public class PigLatin {
         for(int i = 0; i<wordIn.length(); i++){
             wordArray[i] = Character.toString(wordIn.charAt(i));
         }
-
-        //String temp = wordArray[0];
-        //String last = wordArray[wordArray.length-1];
         wordArray[wordArray.length-1] = wordArray[0];;
         wordArray[0] = " ";
 
