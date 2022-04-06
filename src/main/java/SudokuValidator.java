@@ -37,11 +37,11 @@ public class SudokuValidator {
             }
         }
 
-        //for(int k = 0 ; k<9 ; k++) {
-            for (int i = 0; i < 9; i++) {
-                int[] tempArray = new int[9]; // validator box 1/9
-                for (int j = 0; j < 9; j++) {
-                    tempArray[j] = sudoku[j][i];
+        for(int k = 0 ; k<9 ; k++) {
+            int[] tempArray = new int[9]; // validator box 1/9
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    tempArray[k] = sudoku[j][i];
                 }
                 if (validator(tempArray) == true) {
                     result = true;
@@ -51,7 +51,7 @@ public class SudokuValidator {
                     break;
                 }
             }
-        //}
+        }
 
 
 
