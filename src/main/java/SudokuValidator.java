@@ -9,53 +9,63 @@ public class SudokuValidator {
         System.out.println("");
 
         boolean result = true;
+        boolean resultRow = true;
+        boolean resultColumn = true;
+        boolean resultBox = true;
+        int[] tempArray = new int[9]; // validator row
         for (int i = 0; i < 9; i++) {
-            int[] tempArray = new int[9]; // validator row
             for (int j = 0; j < 9; j++) {
                 tempArray[j] = sudoku[i][j];
             }
             if (validator(tempArray) == true) {
-                result = true;
-
+                resultRow = true;
             } else {
                 result = false;
                 break;
             }
+
         }
+        tempArrayEraser(tempArray);
 
         for (int i = 0; i < 9; i++) {
-            int[] tempArray = new int[9]; // validator column
             for (int j = 0; j < 9; j++) {
                 tempArray[j] = sudoku[j][i];
             }
             if (validator(tempArray) == true) {
-                result = true;
-
+                resultColumn = true;
             } else {
-                result = false;
+                resultColumn = false;
                 break;
             }
         }
+        tempArrayEraser(tempArray);
 
-        for(int k = 0 ; k<9 ; k++) {
-            int[] tempArray = new int[9]; // validator box 1/9
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    tempArray[k] = sudoku[j][i];
-                }
-                if (validator(tempArray) == true) {
-                    result = true;
+        // validator box 1/9
+        int k = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                tempArray[k] = sudoku[i][j];
+                k++;
+                if(k>=9) break;
 
-                } else {
-                    result = false;
-                    break;
-                }
             }
         }
+        if (validator(tempArray) == true) {
+            resultBox = true;
 
+        } else {
+            resultBox = false;
 
+        }
+        result = resultRow & resultColumn & resultBox;
 
         return result;
+    }
+
+    private static void tempArrayEraser(int[] tempArray) {
+        for(int i = 0 ; i<9 ; i++){
+            tempArray[i] =0;
+        }
     }
 
     static boolean validator(int[] sudoku) {
