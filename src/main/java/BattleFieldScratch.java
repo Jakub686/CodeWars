@@ -1,16 +1,23 @@
-public class BattleField {
-    //create buffer +
-    //check diagonal 1 +
-    //check amount of types ships (amount)
-    //space between ships
-    public static boolean fieldValidator(int[][] field) {
-        System.out.println();
+public class BattleFieldScratch {
+    public static void main(String[] args) {
+        int[][] field = {
+                {1, 0, 0, 0, 0, 1, 1, 0, 0, 0},
+                {1, 0, 1, 0, 0, 0, 0, 0, 1, 0},
+                {1, 0, 1, 0, 0, 0, 0, 0, 1, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1}};
         boolean result = true;
         field = setBuffer(field);
         showFilled(field);
-        result = diagonal(field) & amountOfShips(field);
-        //System.out.println(result);
-        return true;
+        result = diagonal(field);
+        showFilled(field);
+        System.out.println(result);
+        //return true;
     }
 
     static void showFilled(int[][] field) {
@@ -46,28 +53,12 @@ public class BattleField {
                     if(field[i - 1][j - 1] == 0 & field[i + 1][j - 1] == 0 & field[i + 1][j + 1] == 0 & field[i - 1][j + 1] == 0){
                         result = true;
                     }else {
-                        result = false;
-                        break outer;
+                    result = false;
+                    break outer;
                     }
                 }
             }
         }
-        return result;
-    }
-    static boolean amountOfShips(int[][] field){
-        boolean result = false;
-        int amount = 0;
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                amount = field[i][j];
-            }
-        }
-        if(amount == 20){
-            result = true;
-        }else {
-            result = false;
-        }
-
         return result;
     }
 }
