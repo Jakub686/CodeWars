@@ -1,8 +1,7 @@
 public class BattleField {
     //create buffer +
-    //check diagonal 1 +
-    //check amount of types ships (amount)
-    //space between ships
+    //check diagonal 1 -> ship paterns
+    //patern counters
     public static boolean fieldValidator(int[][] field) {
         System.out.println();
         boolean result = true;
