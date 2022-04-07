@@ -1,8 +1,7 @@
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 
 class SudokuValidatorTest {
     @Test
