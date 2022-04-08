@@ -1,20 +1,18 @@
 public class BattleFieldScratch {
     public static void main(String[] args) {
         int[][] field = {
-                {1, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+                {1, 1, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                {1, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 1, 1, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-                {0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 1, 0, 0}};
+                {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
         boolean result = true;
         field = setBuffer(field);
-        show(field);
-        result = diagonal(field);
         show(field);
         result = checkPatterns(field);
         System.out.println(result);
@@ -63,36 +61,69 @@ public class BattleFieldScratch {
         return result;
     }
     static boolean checkPatterns(int[][] field) {
+        boolean finalResult = false;
         int i=5;
         int j = 5;
-        boolean patern1 = field[i - 1][j - 1] == 0 & field[i + 1][j - 1] == 0 & field[i + 1][j + 1] == 0 & field[i - 1][j + 1] == 0 & field[i + 1][j] == 0 & field[i][j + 1] == 0 & field[i][j - 1] == 0 & field[i - 1][j] == 0;
+        boolean pattern1 = field[i - 1][j - 1] == 0 & field[i + 1][j - 1] == 0 & field[i + 1][j + 1] == 0 & field[i - 1][j + 1] == 0 & field[i + 1][j] == 0 & field[i][j + 1] == 0 & field[i][j - 1] == 0 & field[i - 1][j] == 0;
+        boolean pattern21 = field[i - 1][j] == 0 & field[i - 1][j + 1] == 0 & field[i - 1][j + 2] == 0 & field[i][j + 2] == 0 & field[i + 1][j+2] == 0 & field[i+1][j + 1] == 0 & field[i+1][j] == 0 & field[i +1][j-1] == 0 & field[i][j-1] == 0 & field[i-1][j-1] == 0;
+        boolean pattern22 = field[i - 1][j] == 0 & field[i - 1][j + 1] == 0 & field[i][j + 1] == 0 & field[i + 1][j + 1] == 0 & field[i + 2][j+1] == 0 & field[i+2][j] == 0 & field[i+2][j - 1] == 0 & field[i + 1][j-1] == 0 & field[i][j-1] == 0 & field[i-1][j-1] == 0;
+        boolean pattern31 = field[i - 1][j] == 0 & field[i - 1][j + 1] == 0 & field[i - 1][j + 2] == 0 & field[i][j + 3] == 0 & field[i + 1][j+2] == 0 & field[i+1][j + 1] == 0 & field[i+1][j] == 0 & field[i +1][j-1] == 0 & field[i][j-1] == 0 & field[i-1][j-1] == 0 & field[i-1][j+3] == 0 & field[i+1][j+3] == 0;
         int pos = 0;
-        boolean result = false;
+        boolean result1 = true;
+        boolean result21 = true;
+        boolean result22 = true;
+        boolean result31 = true;
         outer: for (i = 5; i < 15; i++) {
             for (j = 5; j < 15; j++) {
-                pos = field[i][j];
-                if (pos == 1 & patern1 == true ) {
-                    if (patern1 == true) {
-                        result = true;
+                if (field[i][j] == 1 & field[i+1][j] == 0 & field[i-1][j] == 0& field[i][j+1] == 0& field[i][j-1] == 0) {
+                    if (field[i - 1][j - 1] == 0 & field[i + 1][j - 1] == 0 & field[i + 1][j + 1] == 0 & field[i - 1][j + 1] == 0 & field[i + 1][j] == 0 & field[i][j + 1] == 0 & field[i][j - 1] == 0 & field[i - 1][j] == 0) {
+                        result1 = true;
                     } else {
-                        result = false;
+                        result1 = false;
                         break outer;
                     }
                 }
-//                if(result == false) break outer;
-//                if (pos == 1 & field[i+1][j] ==1 & field[i - 1][j - 1] == 0 & field[i - 2][j - 2] == 0 & field[i + 1][j - 1] == 0
-//                        & field[i + 2][j - 2] == 0 & field[i + 1][j + 1] == 0 & field[i + 2][j + 2] == 0 & field[i - 1][j + 1] == 0
-//                        & field[i - 2][j + 2] == 0 & field[i + 1][j] == 0 & field[i + 2][j] == 0 & field[i][j + 1] == 0 & field[i][j + 2] == 0
-//                        & field[i][j - 1] == 0 & field[i][j - 2] == 0 & field[i - 1][j] == 0 & field[i - 2][j] == 0) {
-//                    if (field[i - 1][j - 1] == 0 & field[i - 2][j - 2] == 0 & field[i + 1][j - 1] == 0 & field[i + 2][j - 2] == 0 & field[i + 1][j + 1] == 0 & field[i + 2][j + 2] == 0 & field[i - 1][j + 1] == 0 & field[i - 2][j + 2] == 0 & field[i + 1][j] == 0 & field[i + 2][j] == 0 & field[i][j + 1] == 0 & field[i][j + 2] == 0 & field[i][j - 1] == 0 & field[i][j - 2] == 0 & field[i - 1][j] == 0 & field[i - 2][j] == 0) {
-//                        result = true;
+            }
+        }
+
+        outer: for (i = 5; i < 15; i++) {
+            for (j = 5; j < 15; j++) {
+                if (field[i][j] == 1 &field[i][j+1] == 1 ) {
+                    if (field[i - 1][j] == 0 & field[i - 1][j + 1] == 0 & field[i - 1][j + 2] == 0 & field[i][j + 2] == 0 & field[i + 1][j+2] == 0 & field[i+1][j + 1] == 0 & field[i+1][j] == 0 & field[i +1][j-1] == 0 & field[i][j-1] == 0 & field[i-1][j-1] == 0) {
+                        result21 = true;
+                    } else {
+                        result21 = false;
+                        break outer;
+                    }
+                }
+            }
+        }
+        outer: for (i = 5; i < 15; i++) {
+            for (j = 5; j < 15; j++) {
+                if (field[i][j] == 1 & field[i+1][j] == 1 ) {
+                    if (field[i - 1][j] == 0 & field[i - 1][j + 1] == 0 & field[i][j + 1] == 0 & field[i + 1][j + 1] == 0 & field[i + 2][j+1] == 0 & field[i+2][j] == 0 & field[i+2][j - 1] == 0 & field[i + 1][j-1] == 0 & field[i][j-1] == 0 & field[i-1][j-1] == 0) {
+                        result22 = true;
+                    } else {
+                        result22 = false;
+                        break outer;
+                    }
+                }
+            }
+        }
+//        outer: for (i = 5; i < 15; i++) {
+//            for (j = 5; j < 15; j++) {
+//                if (field[i][j] == 1 & field[i][j+1] == 1 & field[i][j+2] == 1 ) {
+//                    if (field[i - 1][j] == 0 & field[i - 1][j + 1] == 0 & field[i][j + 1] == 0 & field[i + 1][j + 1] == 0 & field[i + 2][j+1] == 0 & field[i+2][j] == 0 & field[i+2][j - 1] == 0 & field[i + 1][j-1] == 0 & field[i][j-1] == 0 & field[i-1][j-1] == 0) {
+//                        result31 = true;
 //                    } else {
-//                        result = false;
+//                        result31 = false;
 //                        break outer;
 //                    }
 //                }
-            }
-        }
-        return result;
+//            }
+//        }
+        finalResult = result1 & result21  & result22;
+
+        return finalResult;
     }
 }
